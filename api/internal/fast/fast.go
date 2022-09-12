@@ -1,6 +1,4 @@
-//==================================================================================================//
-// copied from the https://github.com/adhocore/fast and simplified to fulfill the task requirements //
-//==================================================================================================//
+// Package fast copied from the https://github.com/adhocore/fast and simplified to fulfill the task requirements.
 package fast
 
 import (
@@ -13,7 +11,7 @@ import (
 	"github.com/chromedp/chromedp"
 )
 
-// Fast represents measurement structure
+// A Fast represents measurement structure.
 type Fast struct {
 	Up       float64
 	Down     float64
@@ -21,6 +19,7 @@ type Fast struct {
 	DownUnit string
 }
 
+// Runs speed test check.
 func Run() (*Fast, error) {
 	ctx, cancel := chromedp.NewContext(
 		context.Background(),

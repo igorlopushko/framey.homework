@@ -6,3 +6,5 @@ run-fast:
 	@LOG_LEVEL=debug bash -c 'go run main.go -p fast.com'
 test:
 	@go test -v ./... -coverprofile cover.out
+docs:
+	@godoc -http=:6060

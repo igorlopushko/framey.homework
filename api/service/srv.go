@@ -1,3 +1,4 @@
+// Package service is implemented to represent speed test service behavior.
 package service
 
 import (
@@ -8,14 +9,17 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+// A IProvider interface which defines speed test provider behavior.
 type IProvider interface {
 	Run() ([]model.SpeedTestResult, error)
 }
 
+// A Service is a representation of the services which performs logic to execute speed tests over specified providers.
 type Service struct {
 	Providers map[string]IProvider
 }
 
+// Executes speed tests over the specified providers.
 func (s Service) Exec() (map[string][]model.SpeedTestResult, error) {
 	if s.Providers == nil || len(s.Providers) == 0 {
 		return nil, nil
