@@ -30,9 +30,20 @@ func (f *SpeedTestProvider) Run() ([]model.SpeedTestResult, error) {
 	r := make([]model.SpeedTestResult, 0)
 
 	for _, s := range targets {
-		s.PingTest()
-		s.DownloadTest(false)
-		s.UploadTest(false)
+		err = s.PingTest()
+		if err != nil {
+			return nil, err
+		}
+
+		err = s.DownloadTest(false)
+		if err != nil {
+			return nil, err
+		}
+
+		err = s.UploadTest(false)
+		if err != nil {
+			return nil, err
+		}
 
 		r = append(r, model.SpeedTestResult{
 			Down:     s.DLSpeed,

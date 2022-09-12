@@ -7,16 +7,16 @@ import (
 	"github.com/igorlopushko/framey.homework/api/model"
 )
 
-// A MockProvider represents mock provider implementation.
-type MockProvider struct {
+// A Provider represents mock provider implementation.
+type Provider struct {
 	Name        string
 	ReturnError bool
 }
 
 // Runs speed test simulation over the mock provider.
-func (m MockProvider) Run() ([]model.SpeedTestResult, error) {
+func (m Provider) Run() ([]model.SpeedTestResult, error) {
 	if m.ReturnError {
-		return nil, errors.New("Mock provider error")
+		return nil, errors.New("mock provider error")
 	}
 
 	return []model.SpeedTestResult{

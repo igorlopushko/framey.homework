@@ -33,7 +33,12 @@ func Execute() {
 func init() {
 	cobra.OnInitialize(initConfig)
 
-	rootCmd.PersistentFlags().StringVarP(&providerName, "provider", "p", "", "Speed test provider name. Available values: 'speedtest.net' and 'fast.com'")
+	rootCmd.PersistentFlags().StringVarP(
+		&providerName,
+		"provider",
+		"p",
+		"",
+		"Speed test provider name. Available values: 'speedtest.net' and 'fast.com'")
 }
 
 func initConfig() {
@@ -56,15 +61,12 @@ func run(cmd *cobra.Command, _ []string) error {
 	switch providerName {
 	case "speedtest.net":
 		p[providerName] = &provider.SpeedTestProvider{}
-		break
 	case "fast.com":
 		p[providerName] = &provider.FastProvider{}
-		break
 	case "":
 		// run speed test for 2 providers
 		p["speedtest.net"] = &provider.SpeedTestProvider{}
 		p["fast.com"] = &provider.FastProvider{}
-		break
 	default:
 		return errors.New("'provider' parameter value is not recognized")
 	}

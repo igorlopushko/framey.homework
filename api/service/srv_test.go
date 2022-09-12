@@ -37,7 +37,7 @@ func TestExec_EmptyProviders_ReturnsEmptyResults(t *testing.T) {
 func TestExec_ProviderReturnsError_ReturnsError(t *testing.T) {
 	logrus.SetLevel(logrus.FatalLevel)
 	p := make(map[string]IProvider)
-	p["mock"] = &mock.MockProvider{ReturnError: true, Name: "mock"}
+	p["mock"] = &mock.Provider{ReturnError: true, Name: "mock"}
 	s := &Service{Providers: p}
 	r, err := s.Exec()
 
@@ -52,7 +52,7 @@ func TestExec_ProviderReturnsError_ReturnsError(t *testing.T) {
 
 func TestExec_CorrectProvider_ReturnsCorrectResults(t *testing.T) {
 	p := make(map[string]IProvider)
-	p["mock"] = &mock.MockProvider{ReturnError: false, Name: "mock"}
+	p["mock"] = &mock.Provider{ReturnError: false, Name: "mock"}
 	s := &Service{Providers: p}
 	r, err := s.Exec()
 

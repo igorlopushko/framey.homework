@@ -27,7 +27,8 @@ func Run() (*Fast, error) {
 	)
 	defer cancel()
 
-	ctx, cancel = context.WithTimeout(ctx, 180*time.Second)
+	var timeout time.Duration = 180
+	ctx, cancel = context.WithTimeout(ctx, timeout*time.Second)
 	defer cancel()
 
 	var upStr, downStr string
@@ -49,12 +50,16 @@ func Run() (*Fast, error) {
 	)
 
 	err := chromedp.Run(ctx, cmds...)
-
-	fast.Up, err = strconv.ParseFloat(upStr, 32)
 	if err != nil {
 		return fast, err
 	}
-	fast.Down, err = strconv.ParseFloat(downStr, 32)
+
+	precision := 32
+	fast.Up, err = strconv.ParseFloat(upStr, precision)
+	if err != nil {
+		return fast, err
+	}
+	fast.Down, err = strconv.ParseFloat(downStr, precision)
 	if err != nil {
 		return fast, err
 	}
