@@ -50,8 +50,7 @@ func initConfig() {
 }
 
 func run(cmd *cobra.Command, _ []string) error {
-
-	var p = make(map[string]service.IProvider)
+	p := make(map[string]service.IProvider)
 
 	switch providerName {
 	case "speedtest.net":
@@ -70,7 +69,7 @@ func run(cmd *cobra.Command, _ []string) error {
 	}
 
 	s := &service.Service{Providers: p}
-	r, err := s.Test()
+	r, err := s.Exec()
 	if err != nil {
 		return err
 	}

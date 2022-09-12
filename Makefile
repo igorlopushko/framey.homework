@@ -1,7 +1,8 @@
 run-all:
-	go run main.go
+	@LOG_LEVEL=debug bash -c 'go run main.go'
 run-speed:
-	go run main.go -p speedtest.net
+	@LOG_LEVEL=debug bash -c 'go run main.go -p speedtest.net'
 run-fast:
-	go run main.go -p fast.com 
+	@LOG_LEVEL=debug bash -c 'go run main.go -p fast.com'
 test:
+	@go test -v ./... -coverprofile cover.out

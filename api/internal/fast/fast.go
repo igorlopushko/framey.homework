@@ -1,3 +1,6 @@
+//==================================================================================================//
+// copied from the https://github.com/adhocore/fast and simplified to fulfill the task requirements //
+//==================================================================================================//
 package fast
 
 import (
@@ -18,9 +21,7 @@ type Fast struct {
 	DownUnit string
 }
 
-// Measure does the main job.
-// It returns *Fast and error
-func Measure() (*Fast, error) {
+func Run() (*Fast, error) {
 	ctx, cancel := chromedp.NewContext(
 		context.Background(),
 		chromedp.WithLogf(log.Printf),
@@ -60,15 +61,4 @@ func Measure() (*Fast, error) {
 	}
 
 	return fast, err
-}
-
-// Run is the ready to use API.
-// For customization call Measure().
-func Run() (Fast, error) {
-	fast, err := Measure()
-	if err != nil {
-		return *fast, err
-	}
-
-	return *fast, nil
 }

@@ -16,8 +16,8 @@ type Service struct {
 	Providers map[string]IProvider
 }
 
-func (s *Service) Test() (map[string][]model.SpeedTestResult, error) {
-	if len(s.Providers) == 0 {
+func (s Service) Exec() (map[string][]model.SpeedTestResult, error) {
+	if s.Providers == nil || len(s.Providers) == 0 {
 		return nil, nil
 	}
 
