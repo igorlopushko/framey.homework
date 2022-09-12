@@ -6,6 +6,8 @@ run-fast:
 	@LOG_LEVEL=debug bash -c 'go run main.go -p fast.com'
 test:
 	@go test -v ./... -coverprofile cover.out
+bench:
+	@go test -v ./... -bench=.  -benchmem -run=^#
 godoc:
 	@godoc -http=0.0.0.0:6060 -v -timestamps=true -links=true -play=true
 lint:

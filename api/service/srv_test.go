@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/igorlopushko/framey.homework/api/internal/mock"
+	"github.com/igorlopushko/framey.homework/api/provider"
 	"github.com/sirupsen/logrus"
 )
 
@@ -62,5 +63,40 @@ func TestExec_CorrectProvider_ReturnsCorrectResults(t *testing.T) {
 
 	if err != nil {
 		t.Errorf("srv.Exec(). Error occurred: %v", err)
+	}
+}
+
+func BenchmarkSpeedtestNet(b *testing.B) {
+	p := make(map[string]IProvider)
+	p["speedtest.net"] = &provider.SpeedTestProvider{Name: "speedtest.net"}
+	s := &Service{Providers: p}
+	for i := 0; i < b.N; i++ {
+		r, err := s.Exec()
+
+		if len(r) > 1 || len(r) == 0 {
+			b.Errorf("srv.Exec(). Results contain %d elements. Results len has to be 1", len(r))
+		}
+
+		if err != nil {
+			b.Errorf("srv.Exec(). Error occurred: %v", err)
+		}
+	}
+}
+
+func BenchmarkFastCom(b *testing.B) {
+	p := make(map[string]IProvider)
+	p["fast.com"] = &provider.FastProvider{Name: "fast.com"}
+	s := &Service{Providers: p}
+
+	for i := 0; i < b.N; i++ {
+		r, err := s.Exec()
+
+		if len(r) > 1 || len(r) == 0 {
+			b.Errorf("srv.Exec(). Results contain %d elements. Results len has to be 1", len(r))
+		}
+
+		if err != nil {
+			b.Errorf("srv.Exec(). Error occurred: %v", err)
+		}
 	}
 }

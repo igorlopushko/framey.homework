@@ -17,6 +17,7 @@ Use makefile for quick run of the program. There are following rule:
 - ```run-speed``` - runs test for ```speedtest.net``` provider.  
 - ```run-fast``` - runs test for ```fast.com``` provider.  
 - ```test``` - runs unit-tests.  
+- ```bench``` - runs benchmark tests.
 - ```godoc``` - generates docs and launches it on http://localhost:6060.  
 - ```lint``` - runs linting.  
 ## Configuration
