@@ -7,8 +7,10 @@ Configuration is done through the environment variables. Supported configuration
 ## Usage
 ### Command line
 Direct usage could be done with the following command:  
+
 ```go run main.go --provider ookla```  
-```--provider``` (shot version is ```-p```) parameter could take the following values:  
+
+```--provider``` (shot version is ```-p```) parameter could take the following values:
 - ```ookla``` (shot version is ```o```) - Ookla's provider.
 - ```netflix``` (shot version is ```n```) - Netflix's provider.
 ### Makefile
