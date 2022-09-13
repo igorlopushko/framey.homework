@@ -39,7 +39,9 @@ func init() {
 		"provider",
 		"p",
 		"",
-		"Speed test provider name. Available values: 'ookla' and 'netflix'")
+		`Speed test provider name. Available values:
+		[o] or [ookla] - for Ookla's provider
+		[n] or [netflix] - for Netflix's provider`)
 }
 
 func initConfig() {
@@ -60,10 +62,10 @@ func run(cmd *cobra.Command, _ []string) error {
 	p := make(map[string]service.IProvider)
 
 	switch strings.ToLower(providerName) {
-	case "ookla":
-		p[providerName] = &provider.SpeedTestProvider{}
-	case "netflix":
-		p[providerName] = &provider.FastProvider{}
+	case "ookla", "o":
+		p["ookla"] = &provider.SpeedTestProvider{}
+	case "netflix", "n":
+		p["netflix"] = &provider.FastProvider{}
 	case "":
 		// run speed test for 2 providers
 		p["ookla"] = &provider.SpeedTestProvider{}
