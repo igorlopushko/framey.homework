@@ -39,7 +39,7 @@ func init() {
 		"provider",
 		"p",
 		"",
-		`Speed test provider name. Available values:
+		`Speed test provider name. Skip to run all providers. Available values:
 		[o] or [ookla] - for Ookla's provider
 		[n] or [netflix] - for Netflix's provider`)
 }
