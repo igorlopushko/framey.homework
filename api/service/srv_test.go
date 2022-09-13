@@ -68,7 +68,7 @@ func TestExec_CorrectProvider_ReturnsCorrectResults(t *testing.T) {
 
 func BenchmarkSpeedtestNet(b *testing.B) {
 	p := make(map[string]IProvider)
-	p["speedtest.net"] = &provider.SpeedTestProvider{Name: "speedtest.net"}
+	p["ookla"] = &provider.SpeedTestProvider{Name: "ookla"}
 	s := &Service{Providers: p}
 	for i := 0; i < b.N; i++ {
 		r, err := s.Exec()
@@ -85,7 +85,7 @@ func BenchmarkSpeedtestNet(b *testing.B) {
 
 func BenchmarkFastCom(b *testing.B) {
 	p := make(map[string]IProvider)
-	p["fast.com"] = &provider.FastProvider{Name: "fast.com"}
+	p["netflix"] = &provider.FastProvider{Name: "netflix"}
 	s := &Service{Providers: p}
 
 	for i := 0; i < b.N; i++ {

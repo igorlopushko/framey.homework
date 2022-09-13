@@ -5,12 +5,12 @@ import (
 	"github.com/showwin/speedtest-go/speedtest"
 )
 
-// A SpeedTestProvider represents speedtest.net provider behavior.
+// A SpeedTestProvider represents Ookla's provider behavior.
 type SpeedTestProvider struct {
 	Name string
 }
 
-// Runs speed test for the speedtest.net provider.
+// Runs speed test for the Ookla's provider.
 func (f *SpeedTestProvider) Run() ([]model.SpeedTestResult, error) {
 	user, err := speedtest.FetchUserInfo()
 	if err != nil {

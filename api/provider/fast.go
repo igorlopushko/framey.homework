@@ -5,12 +5,12 @@ import (
 	"github.com/igorlopushko/framey.homework/api/model"
 )
 
-// A FastProvider represents fast.com provider behavior.
+// A FastProvider represents Netflix's provider behavior.
 type FastProvider struct {
 	Name string
 }
 
-// Runs speed test for the fast.com provider.
+// Runs speed test for the Netflix's provider.
 func (f *FastProvider) Run() ([]model.SpeedTestResult, error) {
 	r, err := fast.Run()
 	if err != nil {

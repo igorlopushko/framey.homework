@@ -29,7 +29,9 @@ func (s Service) Exec() (map[string][]model.SpeedTestResult, error) {
 
 	for k, v := range s.Providers {
 		logrus.Debug(fmt.Sprintf("Start speed test for provider: '%s'", k))
+
 		start := time.Now()
+
 		r, err := v.Run()
 		if err != nil {
 			logrus.Error(err)

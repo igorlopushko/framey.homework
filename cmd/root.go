@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/igorlopushko/framey.homework/api/config"
 	"github.com/igorlopushko/framey.homework/api/provider"
@@ -38,7 +39,7 @@ func init() {
 		"provider",
 		"p",
 		"",
-		"Speed test provider name. Available values: 'speedtest.net' and 'fast.com'")
+		"Speed test provider name. Available values: 'ookla' and 'netflix'")
 }
 
 func initConfig() {
@@ -58,31 +59,37 @@ func initConfig() {
 func run(cmd *cobra.Command, _ []string) error {
 	p := make(map[string]service.IProvider)
 
-	switch providerName {
-	case "speedtest.net":
+	switch strings.ToLower(providerName) {
+	case "ookla":
 		p[providerName] = &provider.SpeedTestProvider{}
-	case "fast.com":
+	case "netflix":
 		p[providerName] = &provider.FastProvider{}
 	case "":
 		// run speed test for 2 providers
-		p["speedtest.net"] = &provider.SpeedTestProvider{}
-		p["fast.com"] = &provider.FastProvider{}
+		p["ookla"] = &provider.SpeedTestProvider{}
+		p["netflix"] = &provider.FastProvider{}
 	default:
 		return errors.New("'provider' parameter value is not recognized")
 	}
 
+	fmt.Printf("Start download and upload speeds test\n")
+
+	// execute internet speed testing
 	s := &service.Service{Providers: p}
 	r, err := s.Exec()
 	if err != nil {
 		return err
 	}
 
+	// print out the results
 	for k, v := range r {
 		fmt.Printf("\nSpeed test result for '%s' provider\n", k)
 		for _, t := range v {
 			fmt.Printf(">>Download: %.2f %s, Upload: %.2f %s\n", t.Down, t.DownUnit, t.Up, t.UpUnit)
 		}
 	}
+
+	fmt.Printf("\nFinished download and upload speeds test\n")
 
 	return nil
 }

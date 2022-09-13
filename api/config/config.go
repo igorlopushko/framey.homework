@@ -8,7 +8,7 @@ import (
 	"github.com/caarlos0/env/v6"
 )
 
-// Global application configuration instance.
+// An App is a global application configuration instance.
 var (
 	App Config
 )
