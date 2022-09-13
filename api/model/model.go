@@ -1,4 +1,4 @@
-// Package model is implemented to represent domain models
+// Package model is implemented to represent domain models.
 package model
 
 // A SpeedTestResult represents speed test data.
